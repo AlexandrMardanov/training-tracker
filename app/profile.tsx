@@ -2,10 +2,10 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { COLORS } from '@/constants/colors';
 
-export default function Index() {
+export default function Profile() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Hello World</Text>
+      <Text style={styles.text}>Profile</Text>
     </View>
   );
 }
