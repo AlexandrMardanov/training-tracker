@@ -1,26 +1,19 @@
-import { Tabs } from 'expo-router';
+import { Slot } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
+
+import { AuthRedirect } from '@/components/shared/AuthRedirect';
+import { AuthProvider } from '@/contexts/AuthContext';
+
+// Prevent the splash screen from auto-hiding
+SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   return (
-    <>
+    <AuthProvider>
       <StatusBar style='dark' />
-      <Tabs>
-        <Tabs.Screen
-          name='index'
-          options={{
-            title: 'Home',
-            headerShown: false,
-          }}
-        />
-        <Tabs.Screen
-          name='profile'
-          options={{
-            title: 'Profile',
-            headerShown: false,
-          }}
-        />
-      </Tabs>
-    </>
+      <AuthRedirect />
+      <Slot />
+    </AuthProvider>
   );
 }

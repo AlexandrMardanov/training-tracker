@@ -2,10 +2,10 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { COLORS } from '@/constants/colors';
 
-export default function Profile() {
+export default function Dashboard() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Profile</Text>
+      <Text style={styles.text}>Дашборд</Text>
     </View>
   );
 }
@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: COLORS.background,
   },
   text: {
     fontSize: 24,
