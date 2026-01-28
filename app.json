@@ -26,6 +26,18 @@
     },
     "android": {
       "package": "com.mardanov.trainingtracker"
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "4e6c49dc-eef9-4c43-b2a1-127dbfa94dc5"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/4e6c49dc-eef9-4c43-b2a1-127dbfa94dc5"
     }
   }
 }
