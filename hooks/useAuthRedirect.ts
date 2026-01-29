@@ -19,7 +19,7 @@ export function useAuthRedirect() {
     if (!user && !inAuthGroup) {
       // Redirect to login if not authenticated
       router.replace('/(auth)/login');
-    } else if (user && inAuthGroup) {
+    } else if (user && (inAuthGroup || segments[0] === undefined)) {
       // Redirect to main app if authenticated
       router.replace('/(tabs)/dashboard');
     }
