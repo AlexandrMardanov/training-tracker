@@ -14,7 +14,6 @@ export default function TabsLayout() {
         name='profile'
         options={{
           title: 'Профіль',
-          headerShown: false,
         }}
       />
     </Tabs>
