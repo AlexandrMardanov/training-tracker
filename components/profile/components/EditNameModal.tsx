@@ -1,8 +1,10 @@
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 
+import { BlurView } from 'expo-blur';
+
 import { Button } from '@/components/shared/Button';
 import { Input } from '@/components/shared/Input';
-import { COLORS } from '@/constants/colors';
+import { COLORS, FONTS } from '@/constants/colors';
 
 type EditNameModalProps = {
   visible: boolean;
@@ -16,22 +18,30 @@ type EditNameModalProps = {
 export function EditNameModal({ visible, name, onChangeName, onSave, onCancel, isSaving }: EditNameModalProps) {
   return (
     <Modal visible={visible} transparent animationType='fade' onRequestClose={onCancel}>
-      <Pressable style={styles.modalOverlay} onPress={onCancel}>
-        <Pressable style={styles.modalContent} onPress={(e) => e.stopPropagation()}>
-          <Text style={styles.modalTitle}>{`Редагувати ім'я`}</Text>
-          <Input
-            value={name}
-            onChangeText={onChangeName}
-            placeholder="Введіть ваше ім'я"
-            autoCapitalize='words'
-            style={styles.nameInput}
-          />
-          <View style={styles.buttonRow}>
-            <Button title='Зберегти' onPress={onSave} loading={isSaving} variant='primary' style={styles.saveButton} />
-            <Button title='Скасувати' onPress={onCancel} variant='secondary' style={styles.cancelButton} />
-          </View>
+      <BlurView intensity={20} tint='light' style={styles.modalOverlay}>
+        <Pressable style={styles.overlayPressable} onPress={onCancel}>
+          <Pressable style={styles.modalContent} onPress={(e) => e.stopPropagation()}>
+            <Text style={styles.modalTitle}>{`Редагувати ім'я`}</Text>
+            <Input
+              value={name}
+              onChangeText={onChangeName}
+              placeholder="Введіть ваше ім'я"
+              autoCapitalize='words'
+              style={styles.nameInput}
+            />
+            <View style={styles.buttonRow}>
+              <Button
+                title='Зберегти'
+                onPress={onSave}
+                loading={isSaving}
+                variant='primary'
+                style={styles.saveButton}
+              />
+              <Button title='Скасувати' onPress={onCancel} variant='secondary' style={styles.cancelButton} />
+            </View>
+          </Pressable>
         </Pressable>
-      </Pressable>
+      </BlurView>
     </Modal>
   );
 }
@@ -39,26 +49,29 @@ export function EditNameModal({ visible, name, onChangeName, onSave, onCancel, i
 const styles = StyleSheet.create({
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  overlayPressable: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
   },
   modalContent: {
     backgroundColor: '#fff',
-    borderRadius: 8,
+    borderRadius: 16,
     padding: 24,
     width: '100%',
     maxWidth: 400,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 12,
-    elevation: 8,
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.4,
+    shadowRadius: 16,
+    elevation: 12,
   },
   modalTitle: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontFamily: FONTS.bold,
     color: COLORS.text,
     marginBottom: 20,
     textAlign: 'center',

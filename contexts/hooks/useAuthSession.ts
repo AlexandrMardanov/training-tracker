@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 
 import { User } from '@supabase/supabase-js';
-import * as SplashScreen from 'expo-splash-screen';
 
 import { supabase } from '@/lib/supabase';
 
@@ -27,8 +26,6 @@ export function useAuthSession() {
       })
       .finally(async () => {
         setLoading(false);
-        // Hide splash screen after auth check is complete
-        await SplashScreen.hideAsync();
       });
 
     // Listen for auth changes

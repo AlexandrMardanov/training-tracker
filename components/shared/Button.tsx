@@ -1,6 +1,6 @@
 import { ActivityIndicator, Pressable, PressableProps, StyleProp, StyleSheet, Text, ViewStyle } from 'react-native';
 
-import { COLORS } from '@/constants/colors';
+import { COLORS, FONTS } from '@/constants/colors';
 
 type ButtonProps = PressableProps & {
   title: string;
@@ -16,12 +16,13 @@ export function Button(props: ButtonProps) {
 
   return (
     <Pressable
-      style={[
+      style={({ pressed }) => [
         styles.button,
         variant === 'primary' && styles.buttonPrimary,
         variant === 'danger' && styles.buttonDanger,
         variant === 'secondary' && styles.buttonSecondary,
         isDisabled && styles.buttonDisabled,
+        pressed && !isDisabled && styles.buttonPressed,
         style,
       ]}
       onPress={onPress}
@@ -39,29 +40,43 @@ export function Button(props: ButtonProps) {
 
 const styles = StyleSheet.create({
   button: {
-    borderRadius: 8,
-    padding: 16,
-    alignItems: 'center',
+    borderRadius: 12,
     marginTop: 8,
+    paddingVertical: 14,
+    paddingHorizontal: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: 50,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
   },
   buttonPrimary: {
     backgroundColor: COLORS.primary,
   },
   buttonDanger: {
-    backgroundColor: '#FF3B30',
+    backgroundColor: COLORS.danger,
   },
   buttonSecondary: {
-    backgroundColor: 'transparent',
-    borderWidth: 1,
-    borderColor: COLORS.primary,
+    backgroundColor: '#F2F2F7',
+  },
+  buttonPressed: {
+    opacity: 0.7,
+    transform: [{ scale: 0.98 }],
   },
   buttonDisabled: {
-    opacity: 0.6,
+    opacity: 0.4,
   },
   buttonText: {
     color: '#fff',
-    fontSize: 16,
-    fontWeight: '600',
+    fontSize: 17,
+    fontFamily: FONTS.semiBold,
+    letterSpacing: -0.4,
   },
   buttonTextSecondary: {
     color: COLORS.primary,

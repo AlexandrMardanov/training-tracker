@@ -9,7 +9,7 @@ import {
   ViewStyle,
 } from 'react-native';
 
-import { COLORS } from '@/constants/colors';
+import { COLORS, FONTS } from '@/constants/colors';
 
 type InputProps = TextInputProps & {
   value: string;
@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 16,
     fontSize: 14,
+    fontFamily: FONTS.regular,
     marginBottom: 16,
     color: COLORS.text,
     borderWidth: 1,

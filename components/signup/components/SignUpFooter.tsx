@@ -2,7 +2,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { Link } from 'expo-router';
 
-import { COLORS } from '@/constants/colors';
+import { COLORS, FONTS } from '@/constants/colors';
 
 export function SignUpFooter() {
   return (
@@ -26,10 +26,11 @@ const styles = StyleSheet.create({
   footerText: {
     color: COLORS.text + 'CC',
     fontSize: 14,
+    fontFamily: FONTS.regular,
   },
   link: {
     color: COLORS.primary,
     fontSize: 14,
-    fontWeight: '600',
+    fontFamily: FONTS.semiBold,
   },
 });
