@@ -37,7 +37,7 @@ export function EditNameModal({ visible, name, onChangeName, onSave, onCancel, i
                 variant='primary'
                 style={styles.saveButton}
               />
-              <Button title='Скасувати' onPress={onCancel} variant='secondary' style={styles.cancelButton} />
+              <Button title='Скасувати' onPress={onCancel} variant='danger' style={styles.cancelButton} />
             </View>
           </Pressable>
         </Pressable>

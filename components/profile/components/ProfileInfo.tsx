@@ -14,7 +14,7 @@ type ProfileInfoProps = {
 
 export function ProfileInfo({ name, email, onEditPress }: ProfileInfoProps) {
   return (
-    <View style={styles.container}>
+    <View>
       <View style={styles.nameRow}>
         <InfoItem label="Ваше ім'я" value={name || 'Не вказано'} />
         <TouchableOpacity style={styles.editIconButton} onPress={onEditPress} activeOpacity={0.7}>
@@ -27,9 +27,6 @@ export function ProfileInfo({ name, email, onEditPress }: ProfileInfoProps) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 24,
-  },
   nameRow: {
     flexDirection: 'row',
     alignItems: 'flex-start',

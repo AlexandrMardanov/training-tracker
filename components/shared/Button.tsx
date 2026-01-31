@@ -5,7 +5,7 @@ import { COLORS, FONTS } from '@/constants/colors';
 type ButtonProps = PressableProps & {
   title: string;
   loading?: boolean;
-  variant?: 'primary' | 'danger' | 'secondary';
+  variant?: 'primary' | 'danger';
   style?: StyleProp<ViewStyle>;
   onPress?: () => void;
 };
@@ -18,9 +18,6 @@ export function Button(props: ButtonProps) {
     <Pressable
       style={({ pressed }) => [
         styles.button,
-        variant === 'primary' && styles.buttonPrimary,
-        variant === 'danger' && styles.buttonDanger,
-        variant === 'secondary' && styles.buttonSecondary,
         isDisabled && styles.buttonDisabled,
         pressed && !isDisabled && styles.buttonPressed,
         style,
@@ -30,9 +27,9 @@ export function Button(props: ButtonProps) {
       {...restProps}
     >
       {loading ? (
-        <ActivityIndicator color={variant === 'secondary' ? COLORS.primary : '#fff'} />
+        <ActivityIndicator color='#fff' />
       ) : (
-        <Text style={[styles.buttonText, variant === 'secondary' && styles.buttonTextSecondary]}>{title}</Text>
+        <Text style={[styles.buttonText, variant === 'danger' && styles.buttonTextDanger]}>{title}</Text>
       )}
     </Pressable>
   );
@@ -40,30 +37,17 @@ export function Button(props: ButtonProps) {
 
 const styles = StyleSheet.create({
   button: {
-    borderRadius: 12,
+    borderRadius: 24,
     marginTop: 8,
     paddingVertical: 14,
     paddingHorizontal: 16,
     alignItems: 'center',
     justifyContent: 'center',
     minHeight: 50,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
-  },
-  buttonPrimary: {
-    backgroundColor: COLORS.primary,
+    backgroundColor: 'rgba(120, 120, 128, 0.2)',
   },
   buttonDanger: {
-    backgroundColor: COLORS.danger,
-  },
-  buttonSecondary: {
-    backgroundColor: '#F2F2F7',
+    color: COLORS.danger,
   },
   buttonPressed: {
     opacity: 0.7,
@@ -73,12 +57,12 @@ const styles = StyleSheet.create({
     opacity: 0.4,
   },
   buttonText: {
-    color: '#fff',
+    color: COLORS.primary,
     fontSize: 17,
-    fontFamily: FONTS.semiBold,
+    fontFamily: FONTS.medium,
     letterSpacing: -0.4,
   },
-  buttonTextSecondary: {
-    color: COLORS.primary,
+  buttonTextDanger: {
+    color: COLORS.danger,
   },
 });

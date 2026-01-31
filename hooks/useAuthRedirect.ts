@@ -21,7 +21,7 @@ export function useAuthRedirect() {
       router.replace('/(auth)/login');
     } else if (user && (inAuthGroup || segments[0] === undefined)) {
       // Redirect to main app if authenticated
-      router.replace('/(tabs)/dashboard');
+      router.replace('/(tabs)/(dashboard)');
     }
   }, [user, loading, segments, router]);
 

@@ -1,29 +1,26 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 
-import { COLORS } from '@/constants/colors';
+import { COLORS, FONTS } from '@/constants/colors';
 import { useAuth } from '@/contexts/AuthContext';
 
-export default function Dashboard() {
+import { ScreenContainer } from '../shared/ScreenContainer';
+
+export function DashboardScreen() {
   const { user } = useAuth();
 
   return (
-    <View style={styles.container}>
+    <ScreenContainer>
       <Text style={styles.text}>
         Привіт, <Text style={styles.text}>{user?.user_metadata.name}</Text>
       </Text>
-    </View>
+    </ScreenContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   text: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontFamily: FONTS.bold,
     color: COLORS.text,
   },
 });
