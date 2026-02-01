@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     fontFamily: FONTS.regular,
   },
   link: {
-    color: COLORS.text.primary,
+    color: COLORS.text.secondary,
     fontSize: 14,
     fontFamily: FONTS.semiBold,
   },

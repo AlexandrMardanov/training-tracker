@@ -4,46 +4,42 @@ import { Button } from '@/components/shared/Button';
 import { FormContainer } from '@/components/shared/FormContainer';
 import { Title } from '@/components/shared/Title';
 
-import { SignUpFooter } from './components/SignUpFooter';
-import { SignUpInputs } from './components/SignUpInputs';
-import { useSignUp } from './hooks/useSignUp';
+import { VerifyOTPInputs } from './components/VerifyOTPInputs';
+import { useVerifyOTP } from './hooks/useVerifyOTP';
 
-export function SignUpForm() {
+export function VerifyOTPForm() {
   const {
-    name,
-    setName,
     email,
-    setEmail,
+    otpCode,
     password,
-    setPassword,
     confirmPassword,
-    setConfirmPassword,
     loading,
-    handleSignUp,
-  } = useSignUp();
+    handleVerifyAndReset,
+    setOtpCode,
+    setPassword,
+    setConfirmPassword,
+  } = useVerifyOTP();
 
   return (
     <FormContainer>
       <Image source={require('@/assets/icon.png')} style={styles.icon} />
-      <Title title='Реєстрація' subtitle='Зареєструйтеся, щоб почати' />
-      <SignUpInputs
-        name={name}
+      <Title title='Введіть код' subtitle='Код надіслано на вашу пошту' />
+      <VerifyOTPInputs
         email={email}
+        otpCode={otpCode}
         password={password}
         confirmPassword={confirmPassword}
         loading={loading}
-        onNameChange={setName}
-        onEmailChange={setEmail}
+        onOtpCodeChange={setOtpCode}
         onPasswordChange={setPassword}
         onConfirmPasswordChange={setConfirmPassword}
       />
       <Button
-        title='Зареєструватися'
-        onPress={handleSignUp}
+        title='Змінити пароль'
+        onPress={handleVerifyAndReset}
         loading={loading}
-        disabled={!name || !email || !password || !confirmPassword}
+        disabled={!otpCode || !password || !confirmPassword || loading}
       />
-      <SignUpFooter />
     </FormContainer>
   );
 }

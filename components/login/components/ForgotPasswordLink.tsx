@@ -5,13 +5,12 @@ import { Link } from 'expo-router';
 import { COLORS } from '@/constants/colors';
 import { FONTS } from '@/constants/fonts';
 
-export function SignUpFooter() {
+export function ForgotPasswordLink() {
   return (
-    <View style={styles.footer}>
-      <Text style={styles.footerText}>Вже маєте обліковий запис? </Text>
-      <Link href='/(auth)/login' asChild>
+    <View style={styles.container}>
+      <Link href={'/(auth)/forgot-password'} asChild>
         <Pressable>
-          <Text style={styles.link}>Увійти</Text>
+          <Text style={styles.link}>Забули пароль?</Text>
         </Pressable>
       </Link>
     </View>
@@ -19,15 +18,10 @@ export function SignUpFooter() {
 }
 
 const styles = StyleSheet.create({
-  footer: {
+  container: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 24,
-  },
-  footerText: {
-    color: COLORS.text.secondary,
-    fontSize: 14,
-    fontFamily: FONTS.regular,
+    marginBottom: 12,
   },
   link: {
     color: COLORS.text.secondary,

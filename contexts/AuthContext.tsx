@@ -14,6 +14,9 @@ type AuthContextType = {
   signUp: (email: string, password: string, name: string) => Promise<void>;
   signOut: () => Promise<void>;
   updateProfile: (name: string) => Promise<void>;
+  sendPasswordResetOTP: (email: string) => Promise<void>;
+  verifyOTPAndResetPassword: (email: string, token: string, newPassword: string) => Promise<void>;
+  updatePassword: (newPassword: string) => Promise<void>;
 };
 
 type AuthProviderProps = {
@@ -25,7 +28,8 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider(props: AuthProviderProps) {
   const { children } = props;
 
-  const { signIn, signUp, signOut } = useAuthOperations();
+  const { signIn, signUp, signOut, sendPasswordResetOTP, verifyOTPAndResetPassword, updatePassword } =
+    useAuthOperations();
   const { user, loading } = useAuthSession();
 
   async function updateProfile(name: string) {
@@ -51,6 +55,9 @@ export function AuthProvider(props: AuthProviderProps) {
     signUp,
     signOut,
     updateProfile,
+    sendPasswordResetOTP,
+    verifyOTPAndResetPassword,
+    updatePassword,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
