@@ -7,7 +7,7 @@ export default function Dashboard() {
   const { user } = useAuth();
 
   useScreenOptions({
-    title: user?.user_metadata.name || 'Дашборд',
+    title: `ТурнікМен ${user?.user_metadata.name}` || 'Дашборд',
     headerRight: () => <ProfileButton />,
   });
 
