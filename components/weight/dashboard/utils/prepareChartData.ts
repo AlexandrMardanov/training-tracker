@@ -1,4 +1,4 @@
-import type { WeightEntry } from '@/lib/weight-mocks';
+import type { WeightEntry } from '@/lib/weight-service';
 
 import { formatDateLabel } from './formatDateLabel';
 

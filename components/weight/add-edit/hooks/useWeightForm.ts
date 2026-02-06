@@ -4,7 +4,7 @@ import { Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 
 import { useAuth } from '@/contexts/AuthContext';
-import { getWeightEntry } from '@/lib/weight-mocks';
+import { getWeightEntry } from '@/lib/weight-service';
 
 import { useWeightData } from '../../shared/hooks/useWeightData';
 import { validateWeightInput } from '../utils/validateWeightInput';
@@ -40,7 +40,7 @@ export function useWeightForm(props: UseWeightFormProps) {
           setDate(new Date(entry.date));
         }
       } catch (err) {
-        console.error('Помилка завантаження запису:', err);
+        Alert.alert('Помилка', (err as Error).message);
       } finally {
         setInitialLoading(false);
       }
@@ -90,8 +90,7 @@ export function useWeightForm(props: UseWeightFormProps) {
         router.back();
       })
       .catch((err) => {
-        console.error('Невдалося зберегти запис:', err);
-        Alert.alert('Помилка', 'Помилка збереження');
+        Alert.alert('Помилка', (err as Error).message);
       })
       .finally(() => {
         setLoading(false);

@@ -4,9 +4,11 @@ import { NativeTabs } from 'expo-router/unstable-native-tabs';
 
 import { COLORS } from '@/constants/colors';
 import { useTabBar } from '@/contexts/TabBarContext';
+import { useWeightReminderContext } from '@/contexts/WeightReminderContext';
 
 export default function TabsLayout() {
   const { isTabBarHidden } = useTabBar();
+  const { shouldShowBadge } = useWeightReminderContext();
 
   return (
     <NativeTabs tintColor={COLORS.accent.primary} hidden={isTabBarHidden}>
@@ -17,6 +19,7 @@ export default function TabsLayout() {
       <NativeTabs.Trigger name='(weight)'>
         <NativeTabs.Trigger.Label>Вага</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon src={<VectorIcon family={MaterialCommunityIcons} name='scale-bathroom' />} />
+        {shouldShowBadge && <NativeTabs.Trigger.Badge>!</NativeTabs.Trigger.Badge>}
       </NativeTabs.Trigger>
     </NativeTabs>
   );

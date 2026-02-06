@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 
+import { useFocusEffect } from '@react-navigation/native';
 import { useRouter } from 'expo-router';
 
 import { EmptyState } from '../shared/components/EmptyState';
@@ -14,8 +15,12 @@ import { RECENT_ENTRIES_LIMIT } from './constants/recentEntriesLimit';
 
 export function WeightDashboardScreen() {
   const router = useRouter();
-  const { entries, entriesWithChanges, loading, error, filterByPeriod, deleteEntry } = useWeightData();
+  const { entries, entriesWithChanges, loading, error, filterByPeriod, deleteEntry, refresh } = useWeightData();
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodFilterType>('month');
+
+  useFocusEffect(() => {
+    refresh();
+  });
 
   const filteredEntries = filterByPeriod(selectedPeriod);
   const recentEntries = entriesWithChanges.slice(0, RECENT_ENTRIES_LIMIT);

@@ -1,4 +1,4 @@
-import type { WeightEntry } from '@/lib/weight-mocks';
+import type { WeightEntry } from '@/lib/weight-service';
 
 export type PeriodFilter = 'month' | '3months' | 'year' | 'all';
 

@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-screens/experimental';
 
 import { Button } from '@/components/shared/Button';
 import { COLORS } from '@/constants/colors';
 import { FONTS } from '@/constants/fonts';
-import type { WeightEntry } from '@/lib/weight-mocks';
+import type { WeightEntry } from '@/lib/weight-service';
 
 import { WeightEntryItem } from '../../shared/components/WeightEntryItem';
 import { RECENT_ENTRIES_LIMIT } from '../constants/recentEntriesLimit';
@@ -21,7 +22,7 @@ export function RecentEntriesSection(props: RecentEntriesSectionProps) {
   const { entries, totalCount, onDelete, onShowAll } = props;
 
   return (
-    <View style={styles.section}>
+    <View>
       <View style={styles.sectionHeader}>
         <Text style={styles.sectionTitle}>Останні записи</Text>
         {totalCount > RECENT_ENTRIES_LIMIT && (
@@ -31,18 +32,17 @@ export function RecentEntriesSection(props: RecentEntriesSectionProps) {
       {entries.length === 0 ? (
         <Text style={styles.noDataText}>Немає записів за цей період</Text>
       ) : (
-        entries.map((entry) => (
-          <WeightEntryItem key={entry.id} entry={entry} change={entry.change} onDelete={onDelete} />
-        ))
+        <SafeAreaView edges={{ bottom: true }} style={{ flex: 1 }}>
+          {entries.map((entry) => (
+            <WeightEntryItem key={entry.id} entry={entry} change={entry.change} onDelete={onDelete} />
+          ))}
+        </SafeAreaView>
       )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  section: {
-    paddingBottom: 100,
-  },
   sectionHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',

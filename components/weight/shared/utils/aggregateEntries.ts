@@ -1,4 +1,4 @@
-import type { WeightEntry } from '@/lib/weight-mocks';
+import type { WeightEntry } from '@/lib/weight-service';
 
 /**
  * Aggregates weight entries to a maximum number of points by grouping and averaging

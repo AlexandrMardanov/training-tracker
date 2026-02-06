@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import { useAuth } from '@/contexts/AuthContext';
+import { useWeightReminderContext } from '@/contexts/WeightReminderContext';
 import {
   type WeightEntry,
   type WeightEntryCreate,
@@ -9,7 +10,7 @@ import {
   deleteWeightEntry,
   getWeightEntries,
   updateWeightEntry,
-} from '@/lib/weight-mocks';
+} from '@/lib/weight-service';
 
 import { MAX_CHART_POINTS } from '../constants/maxChartPoints';
 import { aggregateEntries } from '../utils/aggregateEntries';
@@ -20,6 +21,7 @@ export type { PeriodFilter };
 
 export function useWeightData() {
   const { user } = useAuth();
+  const { refresh: refreshReminder } = useWeightReminderContext();
   const [entries, setEntries] = useState<WeightEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -64,11 +66,12 @@ export function useWeightData() {
       try {
         await addWeightEntry(data);
         await loadEntries();
+        refreshReminder();
       } catch (err) {
         throw err;
       }
     },
-    [user?.id, loadEntries]
+    [user?.id, loadEntries, refreshReminder]
   );
 
   const updateEntry = useCallback(
@@ -76,11 +79,12 @@ export function useWeightData() {
       try {
         await updateWeightEntry(id, data);
         await loadEntries();
+        refreshReminder();
       } catch (err) {
         throw err;
       }
     },
-    [loadEntries]
+    [loadEntries, refreshReminder]
   );
 
   const deleteEntry = useCallback(
@@ -88,11 +92,12 @@ export function useWeightData() {
       try {
         await deleteWeightEntry(id);
         await loadEntries();
+        refreshReminder();
       } catch (err) {
         throw err;
       }
     },
-    [loadEntries]
+    [loadEntries, refreshReminder]
   );
 
   const entriesWithChanges = getEntriesWithChanges(entries);

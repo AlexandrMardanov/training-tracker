@@ -1,5 +1,7 @@
 import { Alert, FlatList, RefreshControl } from 'react-native';
 
+import { useFocusEffect } from 'expo-router';
+
 import { ScreenContainer } from '@/components/shared/ScreenContainer';
 import { COLORS } from '@/constants/colors';
 
@@ -11,6 +13,10 @@ import { useWeightData } from '../shared/hooks/useWeightData';
 
 export function WeightHistoryScreen() {
   const { entriesWithChanges, loading, error, deleteEntry, refresh } = useWeightData();
+
+  useFocusEffect(() => {
+    refresh();
+  });
 
   function handleDelete(id: string) {
     deleteEntry(id).catch((err) => {

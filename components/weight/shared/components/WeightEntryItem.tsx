@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import { COLORS } from '@/constants/colors';
 import { FONTS } from '@/constants/fonts';
-import type { WeightEntry } from '@/lib/weight-mocks';
+import type { WeightEntry } from '@/lib/weight-service';
 
 import { useWeightEntryActions } from '../hooks/useWeightEntryActions';
 import { formatFullDate } from '../utils/formatFullDate';

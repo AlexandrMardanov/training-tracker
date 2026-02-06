@@ -2,7 +2,7 @@ import { Dimensions, StyleSheet, View } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 
 import { COLORS } from '@/constants/colors';
-import type { WeightEntry } from '@/lib/weight-mocks';
+import type { WeightEntry } from '@/lib/weight-service';
 
 import { CHART_CONFIG, CHART_HEIGHT, CHART_PADDING } from '../constants/chartConfig';
 import { prepareChartData } from '../utils/prepareChartData';
