@@ -1,5 +1,3 @@
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { VectorIcon } from 'expo-router';
 import { NativeTabs } from 'expo-router/unstable-native-tabs';
 
 import { COLORS } from '@/constants/colors';
@@ -18,7 +16,7 @@ export default function TabsLayout() {
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name='(weight)'>
         <NativeTabs.Trigger.Label>Вага</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon src={<VectorIcon family={MaterialCommunityIcons} name='scale-bathroom' />} />
+        <NativeTabs.Trigger.Icon sf='figure.stand' md='accessibility' />
         {shouldShowBadge && <NativeTabs.Trigger.Badge>!</NativeTabs.Trigger.Badge>}
       </NativeTabs.Trigger>
     </NativeTabs>
