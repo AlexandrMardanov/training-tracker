@@ -2,7 +2,7 @@ import React, { createContext, useContext } from 'react';
 
 import { User } from '@supabase/supabase-js';
 
-import { supabase } from '@/lib/supabase';
+import * as authService from '@/lib/auth-service';
 
 import { useAuthOperations } from './hooks/useAuthOperations';
 import { useAuthSession } from './hooks/useAuthSession';
@@ -37,15 +37,7 @@ export function AuthProvider(props: AuthProviderProps) {
       throw new Error('Юзер не знайдений');
     }
 
-    const { error } = await supabase.auth.updateUser({
-      data: {
-        name: name.trim(),
-      },
-    });
-
-    if (error) {
-      throw error;
-    }
+    await authService.updateProfile(user.id, { name });
   }
 
   const value = {

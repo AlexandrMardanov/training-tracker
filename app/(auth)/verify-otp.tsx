@@ -1,5 +1,5 @@
-import { VerifyOTPForm } from '@/components/verify-otp/VerifyOTPForm';
+import { VerifyOTPScreen } from '@/components/auth/verify-otp/VerifyOTPScreen';
 
 export default function VerifyOTP() {
-  return <VerifyOTPForm />;
+  return <VerifyOTPScreen />;
 }
